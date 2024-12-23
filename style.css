@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+}
+
+nav {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  height: 65px;
+  background-color: black;
+  color: white;
+}
+
+.time-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2px;
+}
+
+nav ul li {
+  padding: 0 12px;
+}
+
+.brand img {
+  width: 44px;
+  padding: 0 8px;
+}
+
+.music-container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.6);
+  display: flex;
+  padding: 20px 30px;
+  position: relative;
+  margin: 100px 0;
+  z-index: 10;
+}
+
+.img-container {
+  position: relative;
+  width: 110px;
+}
+
+.img-container::after {
+  content: '';
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 100%;
+  top: 4.5%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, 50%);
+}
+
+.img-container img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 110px;
+  width: inherit;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-container.play .img-container img {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+  border: 0;
+  color: #dfdbdf;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 20px;
+  margin: 0 20px;
+  border-radius: 30%;
+}
+
+.action-btn.action-btn-big {
+  color: #cdc2d0;
+  font-size: 30px;
+  align-items: center;
+}
+
+.action-btn:focus {
+  outline: 0;
+}
+
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  bottom: 50px;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+  opacity: 0;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+}
+
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+}
+
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+.progress {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+/* .playlist {
+  margin-top: 20px;
+  text-align: center;
+} */
+
+
+.playlist {
+  height: 133px;
+   width: 500px;
+  margin-top: 20px;
+  text-align: center;
+  max-height: 300px; /* Set maximum height */
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+  
+
+.playlist ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playlist li {
+  padding: 10px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s;
+}
+
+.playlist li:hover,
+.playlist li.active {
+  background: rgba(255, 255, 255, 0.3);
+}
+.controls {
+  margin: 10px 0;
+  text-align: center;
+}
+
+#file-upload,
+#search {
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/* Volume Control Styles */
+.volume-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.volume-slider {
+  width: 100px;
+  margin: 0 10px;
+}
+
+.volume-control button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#fileInputContainer {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.4);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#fileInputContainer:hover {
+  background-color: #0056b3;
+  box-shadow: 0 10px 15px rgba(0, 86, 179, 0.5);
+}
+
+#fileInput {
+  display: none;
+}
+.search-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 15px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: #aaa;
+  font-size: 1.2rem;
+}
+
+#search {
+  width: 250px;
+  padding: 10px 10px 10px 35px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+#search::placeholder {
+  color: #ddd;
+}
+
+#search:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Upload Button Styling */
+.upload-box {
+  display: flex;
+  align-items: center;
+}
+
+.upload-label {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.upload-label:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.upload-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #search {
+    width: 200px;
+  }
+  
+  .upload-label {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
